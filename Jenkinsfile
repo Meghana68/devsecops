@@ -3,6 +3,9 @@
 
 import groovy.json.JsonSlurper
 import java.net.URL
+import jenkins.model.*
+jenkins = Jenkins.instance
+
 
 pipeline {
     agent none
