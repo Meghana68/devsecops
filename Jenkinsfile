@@ -54,10 +54,10 @@ pipeline {
             agent any
             when { branch 'master' }
             steps { deployImage('prod') }
-        }
+        }*/
     }
 }
-*/
+
 
 // ================================================================================================
 // Initialization steps
@@ -73,7 +73,7 @@ def initialize() {
         ((env.BRANCH_NAME == "master") ? "" : "${env.ENVIRONMENT}-") + 
         env.BUILD_ID
     showEnvironmentVariables()
-}
+    }
 
 def setEnvironment() {
     def branchName = env.BRANCH_NAME.toLowerCase()
@@ -480,5 +480,5 @@ node {
         }
 }
        */
-    }
-}
+    
+
