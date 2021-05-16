@@ -1,6 +1,7 @@
 
-#!groovy
+!groovy
 
+import groovy.transform.Field
 import groovy.json.JsonSlurper
 import java.net.URL
 import jenkins.model.*
