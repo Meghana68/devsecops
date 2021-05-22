@@ -339,8 +339,8 @@ node {
         {
 	  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 	      sh """
-              sudo docker-compose -f Sonarqube/sonar.yml up -d
-              sudo docker-compose -f Anchore-Engine/docker-compose.yaml up -d
+              docker-compose -f Sonarqube/sonar.yml up -d
+              docker-compose -f Anchore-Engine/docker-compose.yaml up -d
               """
 	  }
         }
