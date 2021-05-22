@@ -19,7 +19,7 @@ pipeline {
             agent any
             steps { initialize() }
         }*/
-       stage("Build App") {
+      /* stage("Build App") {
             agent any 
             steps { buildApp()}
         }
