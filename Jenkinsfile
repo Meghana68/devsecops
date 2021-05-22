@@ -15,10 +15,10 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        /*stage("Init") {
+        stage("Init") {
             agent any
             steps { initialize() }
-        }*/
+        }
       /* stage("Build App") {
             agent any 
             steps { buildApp()}
