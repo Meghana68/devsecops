@@ -1,6 +1,6 @@
 
 //!groovy
-
+/*
 import groovy.transform.Field
 import groovy.json.JsonSlurper
 import java.net.URL
@@ -66,7 +66,7 @@ pipeline {
 // ================================================================================================
 // Initialization steps
 // ================================================================================================
-
+/*
 def initialize() {
     env.SYSTEM_NAME = "DSO"
     env.AWS_REGION = "us-east-1"
@@ -117,10 +117,10 @@ def showEnvironmentVariables() {
 
 def buildApp() {
      dir("webapp") {
-        withDockerContainer("maven:3.5.0-jdk-8-alpine") { sh "mvn clean install"}
-        archiveArtifacts '**/target/spring-boot-web-jsp-1.0.war'
-        step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'] )
-     }
+        withDockerContainer("maven:3.5.0-jdk-8-alpine") { sh "mvn clean install"}*/
+  //      archiveArtifacts '**/target/spring-boot-web-jsp-1.0.war'
+ ///       step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'] )
+    /* }
 }
 
 def buildAndRegisterDockerImage() {
@@ -309,7 +309,6 @@ def findJenkinsIp() {
 
 
 
-/* 
 
 properties ([
   parameters ([
@@ -445,10 +444,10 @@ node {
 	  
   	  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 
-	    /*to install inspec as a package
-	    curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec*/
+	    ///to install inspec as a package
+	    curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
 
-/*
+
 
 	    sh """
 	      rm inspec_results || true
@@ -469,10 +468,10 @@ node {
 	      mkdir -p reports/OWASP
 	      mkdir -p reports/Inspec
               mv trufflehog reports/trufflehog || true
-	      mv *.json *.html reports/snyk || true        */
-//	      cp -r /var/lib/jenkins/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/archive/Anchore*/*.json ./reports/Anchore-Engine ||  true
-//	      mv inspec_results reports/Inspec || true
-/*            """
+	      mv *.json *.html reports/snyk || true        
+	      cp -r /var/lib/jenkins/jobs/${JOB_NAME}/builds/${BUILD_NUMBER}/archive/Anchore*/*.json ./reports/Anchore-Engine ||  true
+	      mv inspec_results reports/Inspec || true
+            """
 		//cp Archerysec-ZeD/owasp_report reports/OWASP/ || ture	    
 		  
 	    sh """
@@ -483,6 +482,6 @@ node {
 	  }
         }
 }
-       */
+       
     
 
