@@ -19,9 +19,9 @@ pipeline {
             agent any
             steps { initialize() }
         }
-        stage("Build App") {
+    /*    stage("Build App") {
             agent any 
-            steps { /*buildApp() */}
+            steps { buildApp()}
         }
 /*        stage("Run App Security Scan") {
             agent any 
