@@ -17,8 +17,8 @@ pipeline {
     stages {
         /*stage("Init") {
             agent any
-            steps { initialize() */}
-        }
+            steps { initialize() }
+        }*/
        stage("Build App") {
             agent any 
             steps { buildApp()}
