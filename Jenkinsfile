@@ -312,7 +312,7 @@ def findJenkinsIp() {
 
 properties ([
   parameters ([
-    string(name: 'appRepoURL', value: "", description: "Application's git repository"),
+    string(name: 'appRepoURL', value: "https://github.com/arameshbhr/radevsecopshelloworld/", description: "Application's git repository"),
     string(name: 'dockerImage', value: "", description: "docker Image with tag"),
     string(name: 'targetURL', value: "", description: "Web application's URL"),
     choice(name: 'appType', choices: ['Java', 'Node', 'Angular'], description: 'Type of application'),
@@ -339,8 +339,8 @@ node {
         {
 	  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 	      sh """
-              docker-compose -f Sonarqube/sonar.yml up -d
-              docker-compose -f Anchore-Engine/docker-compose.yaml up -d
+              sudo docker-compose -f Sonarqube/sonar.yml up -d
+              sudo docker-compose -f Anchore-Engine/docker-compose.yaml up -d
               """
 	  }
         }
