@@ -404,7 +404,11 @@ node {
 	    if (appType.equalsIgnoreCase("Java")) {
 	      withSonarQubeEnv('sonarqube') {
 	        dir("${repoName}"){
-	          sh "mvn clean package sonar:sonar"
+	          //sh "mvn clean package sonar:sonar"
+		  sh "mvn sonar:sonar \
+  			-Dsonar.projectKey=test \
+  			-Dsonar.host.url=http://127.0.0.1:9000 \
+  			-Dsonar.login=514c24a2567adeedc8b1230d9f2400bb5d0e45cb"
 	        }
 	      }
 	    
