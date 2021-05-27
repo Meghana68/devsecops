@@ -1,4 +1,11 @@
 
+//https://github.com/jenkins-docs/simple-java-maven-app
+
+//docker.io/library/debian:latest
+
+//https://demo.testfire.net/feedback.jsp
+
+
 //!groovy
 /*
 import groovy.transform.Field
