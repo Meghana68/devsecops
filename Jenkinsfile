@@ -383,7 +383,7 @@ node {
               }
 	    }
 	  
-            //snykSecurity failOnIssues: false, projectName: '$BUILD_NUMBER', severity: 'high', snykInstallation: 'SnykSec', snykTokenId: 'snyk-token', targetFile: "${repoName}/${app_type}"
+            snykSecurity failOnIssues: false, projectName: '$BUILD_NUMBER', severity: 'high', snykInstallation: 'SnykSec', snykTokenId: 'snyk-token', targetFile: "${repoName}/${app_type}"
 		   
 	    def snykFile = readFile "snyk_report.html"
 	    if (snykFile.exists()) {
@@ -398,17 +398,17 @@ node {
 	}
 
         
-        stage ('SAST')
+        stage ('SonarQube')
         {
 	  catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 	    if (appType.equalsIgnoreCase("Java")) {
 	      withSonarQubeEnv('sonarqube') {
 	        dir("${repoName}"){
 	          //sh "mvn clean package sonar:sonar"
-		  /*sh "mvn sonar:sonar \
+		  sh "mvn sonar:sonar \
   			-Dsonar.projectKey=test \
   			-Dsonar.host.url=http://127.0.0.1:9000 \
-  			-Dsonar.login=514c24a2567adeedc8b1230d9f2400bb5d0e45cb" */
+  			-Dsonar.login=514c24a2567adeedc8b1230d9f2400bb5d0e45cb" 
 	        }
 	      }
 	    
@@ -426,7 +426,7 @@ node {
         {
           catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 	    sh 'wget https://github.com/fod-dev/fod-uploader-java/releases/download/v5.2.1/FodUpload.jar'
-	    sh "zip -r 'WebGoat-develop.zip' var/lib/jenkins/workspace/helloworldjenkinsfile/webapp/ "
+	    sh "zip -r 'WebGoat-develop.zip' var/lib/jenkins/workspace/helloworldjenkinsfile/ "
 	    sh """ java -jar "FodUpload.jar" -ac 84d31df7-cb06-432b-818f-2bc63515c39c RWJiMXNnalQyY0R4dUJ5aUY4elwpWkw5ezBrS0Vl0 -rid 6560 -purl https://sandbox.fortify.com/ -apiurl https://api.sandbox.fortify.com/ -z "WebGoat-develop.zip" -ep 2 -rp 0 -pp 2 """
           }
         }
@@ -437,7 +437,7 @@ node {
           catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 	    sh "rm anchore_images || true"
             sh """ echo "$dockerImage" > anchore_images"""
-            //anchore 'anchore_images'
+            anchore 'anchore_images'
 	  }
         }
         
@@ -490,10 +490,10 @@ node {
 		  
 	    sh """
 	    docker system prune -f
-	    
+	    docker-compose -f Sonarqube/sonar.yml down
             docker-compose -f Anchore-Engine/docker-compose.yaml down -v
 	    """
-		  //docker-compose -f Sonarqube/sonar.yml down
+		  //
 	  }
         }
 }
