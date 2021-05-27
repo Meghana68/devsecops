@@ -426,7 +426,7 @@ node {
         {
           catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 	    sh 'wget https://github.com/fod-dev/fod-uploader-java/releases/download/v5.2.1/FodUpload.jar'
-	    sh "zip -r 'WebGoat-develop.zip' /var/lib/jenkins/workspace/helloworldjenkinsfile/ "
+	    sh "zip -r 'WebGoat-develop.zip' /var/lib/jenkins/workspace/helloworldjenkinsfile/simple-java-maven-app/ "
 	    sh """ java -jar "FodUpload.jar" -ac 84d31df7-cb06-432b-818f-2bc63515c39c RWJiMXNnalQyY0R4dUJ5aUY4elwpWkw5ezBrS0Vl0 -rid 6560 -purl https://sandbox.fortify.com/ -apiurl https://api.sandbox.fortify.com/ -z "WebGoat-develop.zip" -ep 2 -rp 0 -pp 2 """
           }
         }
